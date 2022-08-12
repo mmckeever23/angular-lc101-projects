@@ -23,10 +23,10 @@
 
       <div class="col-3">
          <div class="container-right">
-            <button (click)="moveRocket(rocketImage, 'up')">Up</button>
-            <button (click)="moveRocket(rocketImage, 'down')">Down</button>
-            <button (click)="moveRocket(rocketImage, 'right')">Right</button>
-            <button (click)="moveRocket(rocketImage, 'left')">Left</button>
+            <button (click)="moveRocket(rocketImage, 'up')" [disabled]="!takeOffCheck">Up</button>
+            <button (click)="moveRocket(rocketImage, 'down')" [disabled]="!takeOffCheck">Down</button>
+            <button (click)="moveRocket(rocketImage, 'right')" [disabled]="!takeOffCheck">Right</button>
+            <button (click)="moveRocket(rocketImage, 'left')" [disabled]="!takeOffCheck">Left</button>
             <h3>Space Shuttle Height</h3>
             <p>{{height}} km</p><br>
             <p>{{width}} km</p>
@@ -34,8 +34,8 @@
       </div>
    </div>
    <div class="container-control-buttons">
-      <button (click)="takeOff()">Take Off</button>
-      <button (click)="land(rocketImage)">Land</button>
-      <button (click)="abortMission(rocketImage)">Abort Mission</button>
+      <button (click)="takeOff()" [disabled]="takeOffCheck">Take Off</button>
+      <button (click)="land(rocketImage)" [disabled]="!takeOffCheck">Land</button>
+      <button (click)="abortMission(rocketImage)" [disabled]="!takeOffCheck">Abort Mission</button>
    </div>
 </div>

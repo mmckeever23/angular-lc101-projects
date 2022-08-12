@@ -19,7 +19,8 @@ export class AppComponent {
        this.color = 'blue';
        this.height = 10000;
        this.width = 0;
-       this.message = 'Shuttle in flight.';
+       this.message = 'Shuttle in flight.'
+       this.takeOffCheck = true;
     }
  }
 
@@ -31,6 +32,7 @@ export class AppComponent {
     this.message = 'The shuttle has landed.';
     rocketImage.style.bottom = '0px';
     rocketImage.style.left = '0px';
+    this.takeOffCheck = false;
   }
 
   abortMission(rocketImage) {
@@ -42,6 +44,7 @@ export class AppComponent {
        this.message = 'Mission aborted.';
        rocketImage.style.bottom = '0px';
        rocketImage.style.left = '0px';
+       this.takeOffCheck = false;
     }
   }
 
@@ -50,21 +53,36 @@ export class AppComponent {
       let movement = parseInt(rocketImage.style.left) + 10 + 'px';
       rocketImage.style.left = movement;
       this.width = this.width + 10000;
+      this.positionCheck()
     }
     else if (direction === "left") {
       let movement = parseInt(rocketImage.style.left) - 10 + 'px';
       rocketImage.style.left = movement;
       this.width = this.width - 10000; 
+      this.positionCheck()
     }
     else if (direction === "up") {
       let movement = parseInt(rocketImage.style.bottom) + 10 + 'px';
       rocketImage.style.bottom = movement;
       this.height = this.height + 10000; 
+      this.positionCheck()
     }
     else if (direction === "down") {
       let movement = parseInt(rocketImage.style.bottom) - 10 + 'px';
       rocketImage.style.bottom = movement;
       this.height = this.height - 10000; 
+      this.positionCheck()
     }
   }
-}
+
+  takeOffCheck: boolean = false;
+
+  positionCheck() {
+    if (this.width < 0 || this.width > 270000 || this.height < 0 || this.height > 340000) {
+      this.color = 'orange';
+    }
+    else {
+      this.color = 'blue';
+    }
+  }
+}  
